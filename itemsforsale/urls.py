@@ -3,4 +3,5 @@ from .views import ItemListView
 
 urlpatterns = [
     path('', ItemListView.as_view(), name="home"),
+
 ]
