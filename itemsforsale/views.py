@@ -1,6 +1,7 @@
-from django.views.generic import TemplateView
+from django.views.generic import ListView
+from .models import Item
 
 
-class HomePageView(TemplateView):
-    template_name = 'home.html'
-# Create your views here.
+class ItemListView(ListView):
+    model = Item
+    template_name = 'item_list.html'
