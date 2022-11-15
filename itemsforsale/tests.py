@@ -1,9 +1,9 @@
 from django.test import TestCase
-from django.test import SimpleTestCase
+from django.test import TestCase
 from django.urls import reverse, resolve
 
 
-class HomePageTests(SimpleTestCase):
+class HomePageTests(TestCase):
     def test_home_page_status_code(self):
         url = reverse('home')
         response = self.client.get(url)
@@ -18,5 +18,5 @@ class HomePageTests(SimpleTestCase):
         url = reverse('home')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'home.html')
-# Create your tests here.
+        self.assertTemplateUsed(response, 'item_list.html')
+
