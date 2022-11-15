@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="article-entry">
+    <h2>{{ object.title }}</h2>
+    <img src="{{ object.image.url }}" height="100%" width="100%" />
+    <p>${{ object.price }}</p>
+    <p>by {{ object.author }} | {{ object.date }}</p> 
+</div>
+<p><a href="{% url 'item_edit' item.pk %}">Edit</a> |
+    <a href="{% url 'item_delete' item.pk %}">Delete</a></p>
+<p>Back to <a href="{% url 'item_list' %}">All Items</a>.</p> 
+{% endblock content %}
