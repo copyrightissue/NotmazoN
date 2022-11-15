@@ -6,7 +6,7 @@ from django.urls import reverse
 class Item(models.Model):
     title = models.CharField(max_length=255)
     price = models.CharField(max_length=20)
-    image = models.ImageField(upload_to="images/")
+    image = models.ImageField(upload_to="images/%Y/%m/%d", blank=True)
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(
             settings.AUTH_USER_MODEL,
