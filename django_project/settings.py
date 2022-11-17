@@ -129,8 +129,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "accounts.CustomUser"
 
-LOGIN_REDIRECT_URL = "home"
-LOGOUT_REDIRECT_URL = "home"
+LOGIN_REDIRECT_URL = "item_list"
+LOGOUT_REDIRECT_URL = "item_list"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "")
 MEDIA_URL = "/"
