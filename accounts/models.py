@@ -6,6 +6,7 @@ from django.db import models
 class CustomUser(AbstractUser):
     # add additional fields in here
     age = models.PositiveIntegerField(null=True, blank=True)
+    id = models.AutoField(primary_key=True)
     # bio = models.TextField(max_length=500, blank=True)
 
     # def __str__(self):
