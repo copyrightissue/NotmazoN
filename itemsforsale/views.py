@@ -1,8 +1,11 @@
+import logging
+
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
-from .models import Item
+from .models import Item, ItemForm
+from django.shortcuts import render, redirect
 
 
 class ItemListView(ListView):
@@ -40,14 +43,19 @@ class ItemDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 class ItemCreateView(LoginRequiredMixin, CreateView):
-    model = Item
     template_name = "item_new.html"
-    fields = (
-        "title",
-        "image",
-        "price",
-    )
 
-    def form_valid(self, form): 
-        form.instance.author = self.request.user 
-        return super().form_valid(form)
+    def get(self, request):
+        logging.info('getting')
+        return render(request, self.template_name, {'form': ItemForm()})
+
+    def post(self, request):
+        logging.info('posting')
+        form = ItemForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.author = request.user
+            instance.save()
+            # return redirect(request, "item_list.html")
+            return redirect('item_list')
