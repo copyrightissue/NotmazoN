@@ -125,3 +125,5 @@ LOGOUT_REDIRECT_URL = "item_list"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "")
 MEDIA_URL = "/"
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
