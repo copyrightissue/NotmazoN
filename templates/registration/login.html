@@ -6,7 +6,7 @@
 <h2 class="text-primary">Log In</h2>
 <form class="text-light" method='post'>{% csrf_token %}
 	{{ form.as_p }}
-	<button type='submit'>Log In</button>
+	<button class='btn btn-success' type='submit'>Log In</button>
 </form>
-<p><a href='url password reset'>Forgot your password?</a></p>
+<p class="text-light">Forgot your password? Click here to <a href="{% url 'password_reset' %}">reset your password.</a></p>
 {% endblock content %}
