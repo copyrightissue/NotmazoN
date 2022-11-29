@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
+<h1 class="text-primary">Edit</h1>
+<form class="text-light" enctype="multipart/form-data" action="" method="post">
+  {% csrf_token %}
 <h2 class="text-primary">Edit</h2>
 <form class="text-light" action="" method="post">{% csrf_token %}
   {{ form.as_p }}

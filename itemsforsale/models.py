@@ -9,7 +9,7 @@ from accounts.models import CustomUser
 class Item(models.Model):
     title = models.CharField(max_length=255)
     price = models.CharField(max_length=20)
-    image = models.ImageField(upload_to="images/")
+    image = models.ImageField(upload_to="images/", default="images/no-img.jpg")
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(
         CustomUser,

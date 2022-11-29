@@ -26,15 +26,21 @@
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. We will add an item description.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
+                    {% if item.author == request.user %}
                   <a href="{% url 'item_detail' item.pk %}">View</a> |
-                  <a href="{% url 'item_edit' item.pk %}">Edit</a>
+                  <a href="{% url 'item_edit' item.pk %}">Edit</a> |
+                    <a href="{% url 'item_delete' item.pk %}">Delete</a>
+                    {% else %}
+                    <a href="{% url 'item_detail' item.pk %}">View</a>
+                        {% endif %}
                 </div>
 
                 <!-- TEMPERARY -->
-                <div class="btn-group"><a href="{% url 'item_delete' item.pk %}">Delete</a></div>
+<!--                <div class="btn-group"><a href="{% url 'item_delete' item.pk %}">Delete</a></div>-->
 
                 
                 <small class="text-muted">{{ item.date }}</small>
+                  <small class="text-muted">{{ item.author }}</small>
               </div>
             </div>
           </div>
