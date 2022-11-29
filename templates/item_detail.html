@@ -14,11 +14,7 @@
                     <a href="{% url 'item_detail' item.pk %}">Buy</a>
                         {% endif %}
 <p class="text-light">Back to <a href="{% url 'item_list' %}">All Items</a>.</p>
-    <div class="text-light">
-        <img src="{{ object.image.url }}" height="100%" width="100%" />
-        <h3>${{ object.price }}</h3>
-        <p>by {{ object.author }} | {{ object.date }}</p> 
-    </div>
+
 </div>
-<p class="text-light">Back to <a href="{% url 'item_list' %}">All Items</a>.</p>
+
 {% endblock content %}
