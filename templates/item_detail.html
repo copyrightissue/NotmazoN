@@ -2,12 +2,14 @@
 
 {% block content %}
 <div class="article-entry">
-    <h2>{{ object.title }}</h2>
-    <img src="{{ object.image.url }}" height="100%" width="100%" />
-    <p>${{ object.price }}</p>
-    <p>by {{ object.author }} | {{ object.date }}</p> 
+    <h2 class="text-primary">{{ object.title }}</h2>
+    <div class="text-light">
+        <img src="{{ object.image.url }}" height="100%" width="100%" />
+        <h3>${{ object.price }}</h3>
+        <p>by {{ object.author }} | {{ object.date }}</p> 
+    </div>
 </div>
-<p><a href="{% url 'item_edit' item.pk %}">Edit</a> |
+<p class="text-light"><a href="{% url 'item_edit' item.pk %}">Edit</a> |
     <a href="{% url 'item_delete' item.pk %}">Delete</a></p>
-<p>Back to <a href="{% url 'item_list' %}">All Items</a>.</p> 
+<p class="text-light">Back to <a href="{% url 'item_list' %}">All Items</a>.</p> 
 {% endblock content %}
