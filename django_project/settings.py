@@ -125,3 +125,11 @@ LOGOUT_REDIRECT_URL = "item_list"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "")
 MEDIA_URL = "/"
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+DEFAULT_FROM_EMAIL = "kc195609@umconnect.umt.edu" 
+EMAIL_HOST = "smtp.sendgrid.net" 
+EMAIL_HOST_USER = "apikey"
+EMAIL_HOST_PASSWORD = "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" 
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
