@@ -24,6 +24,11 @@
           <a class="navbar-brand" href="{% url 'item_list' %}"><img src="https://images2.imgbox.com/37/91/ZGmZ5cjc_o.png"></a>
           <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center
             mb-md-0">
+          <!-- Search bar -->
+          <form class="d-flex" action="{% url 'search_results' %}" method="get">
+            <input class="form-control me-2" type="search" name="q" placeholder="Search" aria-\ label="Search" >
+            <button class="btn btn-primary" type="submit">Search</button> 
+          </form>
           {% if user.is_authenticated %}
             <li><a href="{% url 'item_new' %}" class="nav-link px-2 link-light">+ New</a></li>
           </ul>
