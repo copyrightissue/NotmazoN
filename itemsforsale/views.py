@@ -1,5 +1,5 @@
 import logging
-
+from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
@@ -59,3 +59,13 @@ class ItemCreateView(LoginRequiredMixin, CreateView):
             instance.save()
             # return redirect(request, "item_list.html")
             return redirect('item_list')
+
+
+class SearchResultsView(ListView):
+    model = Item
+    context_object_name = "item_list"
+    template_name = "search_results.html"
+
+    def get_queryset(self): 
+        query = self.request.GET.get("q")
+        return Item.objects.filter( Q(title__icontains=query))
