@@ -3,7 +3,7 @@
 {% block content %}
 <div class="article-entry">
     <h2 class="text-primary">{{ object.title }}</h2>
-    <img src="{{ object.image.url }}" height="100%" width="100%" />
+    <img src="{{ item.image.url }}" height="100%" width="100%" />
     <p class="text-light">${{ object.price }}</p>
     <p class="text-light">by {{ object.author }} | {{ object.date }}</p>
 </div>
@@ -14,6 +14,11 @@
                     <a href="{% url 'item_detail' item.pk %}">Buy</a>
                         {% endif %}
 <p class="text-light">Back to <a href="{% url 'item_list' %}">All Items</a>.</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button>Send Email</button>
+</form>
 
 </div>
 
