@@ -6,7 +6,7 @@ from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
 from .models import Item, ItemForm
 from django.shortcuts import render, redirect
-
+from django.core.mail import send_mail
 
 class ItemListView(ListView):
     model = Item
@@ -16,6 +16,38 @@ class ItemListView(ListView):
 class ItemDetailView(LoginRequiredMixin, DetailView):
     model = Item
     template_name = "item_detail.html"
+
+    def get(self, request, pk): 
+        logging.info('getting item detail view')
+        return render(
+            request, 
+            self.template_name, 
+            context={
+                'item': self.get_object()
+            },
+        )
+    
+    def post(self, request, pk): 
+        print('posting on item detail view')
+        
+        to_email = self.get_object().author.email
+        print(f"sending email to: {to_email}")
+
+        send_mail(
+            subject='Someone wants to purchase your item', 
+            message='Here is the message.', 
+            from_email=None,
+            recipient_list=[to_email], 
+            fail_silently=False
+        )
+
+        return render(
+            request, 
+            self.template_name, 
+            context={
+                'item': self.get_object()
+            },
+        )
 
 
 class ItemUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
