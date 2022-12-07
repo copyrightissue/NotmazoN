@@ -3,7 +3,7 @@
 {% block content %}
 <div class="article-entry">
     <h2 class="text-primary">{{ object.title }}</h2>
-    <img src="{{ object.image.url }}" height="100%" width="100%" />
+    <img src="{{ object.image.url }}" height="50%" width="50%" />
     <p class="text-light">${{ object.price }}</p>
     <p class="text-light">by {{ object.author }} | {{ object.date }}</p>
 </div>
@@ -11,7 +11,7 @@
                   <a href="{% url 'item_edit' item.pk %}">Edit</a> |
                     <a href="{% url 'item_delete' item.pk %}">Delete</a>
                     {% else %}
-                    <a href="{% url 'item_detail' item.pk %}">Buy</a>
+                    <a href="{% url 'item_detail' item.pk %}">Buy</a> | <a href="mailto:{{  object.author.email }}">Email</a>
                         {% endif %}
 <p class="text-light">Back to <a href="{% url 'item_list' %}">All Items</a>.</p>
 
