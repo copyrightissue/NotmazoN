@@ -47,6 +47,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'django_project.urls'
@@ -133,3 +134,5 @@ EMAIL_HOST_USER = "apikey"
 EMAIL_HOST_PASSWORD = "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" 
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"

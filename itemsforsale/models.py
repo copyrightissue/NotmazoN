@@ -9,6 +9,7 @@ from accounts.models import CustomUser
 class Item(models.Model):
     title = models.CharField(max_length=255)
     price = models.CharField(max_length=20)
+    description = models.TextField(default='')
     image = models.ImageField(upload_to="images/", default="images/no-img.jpg")
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(
@@ -26,7 +27,7 @@ class Item(models.Model):
 class ItemForm(ModelForm):
     class Meta:
         model = Item
-        fields = ["title", "image", "price"]
+        fields = ["title", "image", "description", "price"]
 
     def get_absolute_url(self):
         return reverse("item_detail", kwargs={"pk": self.pk})

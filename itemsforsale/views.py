@@ -7,6 +7,8 @@ from django.urls import reverse_lazy
 from .models import Item, ItemForm
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.contrib import messages
 
 class ItemListView(ListView):
     model = Item
@@ -33,21 +35,26 @@ class ItemDetailView(LoginRequiredMixin, DetailView):
         to_email = self.get_object().author.email
         print(f"sending email to: {to_email}")
 
+        msg_html = render_to_string('email.html', {'logged_in_user': request.user, 'item': self.get_object()})
+
         send_mail(
             subject='Someone wants to purchase your item', 
-            message='Here is the message.', 
+            html_message=msg_html,
+            message='Someone wants to purchase your item',
             from_email=None,
             recipient_list=[to_email], 
             fail_silently=False
-        )
 
-        return render(
-            request, 
-            self.template_name, 
-            context={
-                'item': self.get_object()
-            },
         )
+        messages.success(request, 'Your message has been sent to the seller.')
+        return redirect('item_list')
+        # return render(
+        #     request,
+        #     self.template_name,
+        #     context={
+        #         'item': self.get_object()
+        #     },
+        # )
 
 
 class ItemUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -55,6 +62,7 @@ class ItemUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     fields = (
         "title",
         "image",
+        "description",
         "price",
         )
     template_name = "item_edit.html"

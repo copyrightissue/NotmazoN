@@ -3,6 +3,11 @@
 {% block title %}Item List{% endblock title %}
 
 {% block content %}
+{% if messages %}
+            {% for message in messages %}
+                 <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</div>
+             {% endfor %}
+            {% endif %}
 <div class="album py-5 bg-light">
     <div class="container">
 
@@ -23,7 +28,7 @@
                 </g></svg>
 
             <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. We will add an item description.</p>
+              <p class="card-text">{{ item.description }}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                     {% if item.author == request.user %}
@@ -31,7 +36,7 @@
                   <a href="{% url 'item_edit' item.pk %}">Edit</a> |
                     <a href="{% url 'item_delete' item.pk %}">Delete</a>
                     {% else %}
-                    <a href="{% url 'item_detail' item.pk %}">View</a>
+                    <h2><a href="{% url 'item_detail' item.pk %}">View</a></h2>
                         {% endif %}
                 </div>
 
@@ -48,6 +53,7 @@
 
 
 {% endfor %}
+
       </div>
     </div>
   </div>

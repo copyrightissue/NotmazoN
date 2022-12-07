@@ -2,23 +2,24 @@
 
 {% block content %}
 <div class="article-entry">
-    <h2 class="text-primary">{{ object.title }}</h2>
-    <img src="{{ item.image.url }}" height="100%" width="100%" />
-    <p class="text-light">${{ object.price }}</p>
-    <p class="text-light">by {{ object.author }} | {{ object.date }}</p>
+    <h2 class="text-primary">{{ item.title }}</h2>
+    <img src="{{ item.image.url }}" height="50%" width="50%" />
+    <p class="text-light">${{ item.price }}</p>
+    <p class="text-light">{{ item.description }}</p>
+    <p class="text-light">by {{ item.author }} | {{ item.date }}</p>
 </div>
 {% if item.author == request.user %}
                   <a href="{% url 'item_edit' item.pk %}">Edit</a> |
                     <a href="{% url 'item_delete' item.pk %}">Delete</a>
                     {% else %}
-                    <a href="{% url 'item_detail' item.pk %}">Buy</a>
+<p class="text-light">To purchase this item get in contact with the poster by Email, click the button to send an inquiry with your contact details.</p>
+                    <form method="post">
+                     {% csrf_token %}
+                    <button class="btn btn-success" >Send Email</button>
+                    </form>
                         {% endif %}
 <p class="text-light">Back to <a href="{% url 'item_list' %}">All Items</a>.</p>
 
-<form method="post">
-    {% csrf_token %}
-    <button>Send Email</button>
-</form>
 
 </div>
 

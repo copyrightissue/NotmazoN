@@ -1,0 +1,13 @@
+{% load i18n %}
+{% autoescape off %}
+<p>{% blocktranslate %}Someone wants to buy your item at {{ site_name }}.{% endblocktranslate %}</p>
+
+
+<p>{% translate "Username and Email of Person interested:" %} {{ logged_in_user.get_username }} {{logged_in_user.email }}</p>
+{% translate "Get in touch with them to sell your item:" %} {{ item.title }} {{item.price}}  {{item.date}}
+
+
+
+{% translate "Thanks for using our site!" %}
+
+{% blocktranslate %}The {{ site_name }} team{% endblocktranslate %} {% endautoescape %}
