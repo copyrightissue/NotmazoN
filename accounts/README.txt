@@ -1,0 +1,1 @@
+accounts is for user authentication, it handles signup, password change, and password reset.
