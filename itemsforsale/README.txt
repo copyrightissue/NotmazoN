@@ -1,0 +1,1 @@
+This app is for everything related to buying, selling and handling items.
