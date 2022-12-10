@@ -1,3 +1,2 @@
 
-test2
-superuser - username/ password321 / zerocoolcold@gmail.com
+NotmazoN is a craigslist like ecommerce store. Users create acccounts in order to post items for sale, and other users can browse the site to find items they want to buy while keeping sellers information private. The site is built using the Django framework, and uses a PostgreSQL database. The site is hosted on Heroku.
