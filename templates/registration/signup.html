@@ -4,9 +4,11 @@
 {% block title %}Sign Up{% endblock title %}
 
 {% block content %}
-<h2>Sign Up</h2>
+<h2 class="text-primary">Sign Up</h2>
+<div class="text-light">
 <form method='post'>{% csrf_token %}
     {{ form.as_p }}
     <button class='' type='submit'>Sign Up</button>
 </form>
+</div>
 {% endblock content %}
